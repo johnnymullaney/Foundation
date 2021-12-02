@@ -1188,6 +1188,10 @@
     <Compile Include="Features\Folder\FolderPageUIDescriptor.cs" />
     <Compile Include="Features\Forms\DataCaptureContainerBlock.cs" />
     <Compile Include="Features\Forms\DataCaptureContainerBlockController.cs" />
+    <Compile Include="Features\Forms\Elements\SelectImage\ImageOptionItem.cs" />
+    <Compile Include="Features\Forms\Elements\SelectImage\ImageOptionItemProperty.cs" />
+    <Compile Include="Features\Forms\Elements\SelectImage\SelectImageElementBlock.cs" />
+    <Compile Include="Features\Forms\Elements\SelectImage\SelectImageElementBlockDescriptor.cs" />
     <Compile Include="Features\Header\DemoUserViewModel.cs" />
     <Compile Include="Features\Header\HeaderLogoViewModel.cs" />
     <Compile Include="Features\Header\LargeCartViewModel.cs" />
@@ -2579,6 +2583,7 @@
     <Content Include="modules\_protected\episerver-labs-configuration-manager\episerver-labs-configuration-manager.zip" />
     <Content Include="Features\Shared\Views\ElementBlocks\ODPListConsentFormBlock.cshtml" />
     <Content Include="Features\Shared\Views\ElementBlocks\DataCaptureContainerBlock.cshtml" />
+    <Content Include="Features\Shared\Views\ElementBlocks\SelectImageElementBlock.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

@@ -1,0 +1,39 @@
+﻿@using EPiServer.Forms.Helpers.Internal
+@model Foundation.Features.Forms.Elements.SelectImage.SelectImageElementBlock
+@{
+    var formElement = Model.FormElement;
+    var labelText = Model.Label;
+    var placeholderText = Model.PlaceHolder;
+    var defaultOptionItemText = !string.IsNullOrWhiteSpace(placeholderText)
+        ? placeholderText :
+        Html.Translate(string.Format("/episerver/forms/viewmode/selection/{0}", Model.AllowMultiSelect ? "selectoptions" : "selectanoption"));
+    var defaultOptionSelected = Model.Items != null && Model.Items.Count(x => x.Checked.HasValue && x.Checked.Value) <= 0 ? "selected=\"selected\"" : "";
+    var items = Model.GetItems();
+    var defaultValue = Model.GetDefaultValue();
+    var cssClasses = Model.GetValidationCssClasses();
+}
+ 
+@using (Html.BeginElement(Model, new { @class = "FormSecondarySelection FormSelection" + Model.GetValidationCssClasses(), data_f_type = "selection" }))
+{
+    // sample code to render images
+    foreach (var item in items)
+    {
+        <img src="@Url.ContentUrl(item.Image)" width="80" heigh="80" />
+    }
+
+    <label for="@formElement.Guid" class="Form__Element__Caption">@labelText</label>
+    <select name="@formElement.ElementName" id="@formElement.Guid" @(Model.AllowMultiSelect ? "multiple" : "")   @Model.AttributesString data-f-datainput
+        aria-describedby="@Util.GetAriaDescribedByElementName(formElement.ElementName)"
+        aria-invalid="@Util.GetAriaInvalidByValidationCssClasses(cssClasses)" >
+
+        <option disabled="disabled" @defaultOptionSelected value="">@defaultOptionItemText</option>
+
+        @foreach (var item in items)
+        {
+            var defaultSelectedString = Model.GetDefaultSelectedString(item, defaultValue);
+            var selectedString = string.IsNullOrEmpty(defaultSelectedString) ? string.Empty : "selected";
+            <option value="@item.Value" @selectedString @defaultSelectedString data-f-datainput>@item.Caption</option>
+        }
+
+    </select>
+}
