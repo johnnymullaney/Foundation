@@ -1186,6 +1186,8 @@
     <Compile Include="Features\Checkout\ViewModels\OrderSummaryViewModelFactory.cs" />
     <Compile Include="Features\Checkout\ViewModels\PaymentMethodViewModelFactory.cs" />
     <Compile Include="Features\Folder\FolderPageUIDescriptor.cs" />
+    <Compile Include="Features\Forms\DataCaptureContainerBlock.cs" />
+    <Compile Include="Features\Forms\DataCaptureContainerBlockController.cs" />
     <Compile Include="Features\Header\DemoUserViewModel.cs" />
     <Compile Include="Features\Header\HeaderLogoViewModel.cs" />
     <Compile Include="Features\Header\LargeCartViewModel.cs" />
@@ -2576,6 +2578,7 @@
     <Content Include="modules\_protected\episerver-labs-configuration-manager\web.config" />
     <Content Include="modules\_protected\episerver-labs-configuration-manager\episerver-labs-configuration-manager.zip" />
     <Content Include="Features\Shared\Views\ElementBlocks\ODPListConsentFormBlock.cshtml" />
+    <Content Include="Features\Shared\Views\ElementBlocks\DataCaptureContainerBlock.cshtml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
