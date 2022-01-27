@@ -101,14 +101,14 @@ namespace Foundation.Features.Search.Extensions
                         var fieldNameAnalyzed = search.Client.Conventions.FieldNameConvention.GetFieldNameForAnalyzed(fieldSelector);
 
                         // Create PrefixQuery for single term queries larger than 2 characters
-                        if (terms.Count() == 1 && terms.First().Length > 2)
+                        if (terms.Length == 1 && terms.First().Length > 2)
                         {
                             var prefixQuery = new PrefixQuery(fieldNameLowercase, query.ToLower()) { Boost = 0.5 };
                             newBoolQuery.Should.Add(prefixQuery);
                         }
 
                         // Create PhraseQuery and PhrasePrefixQuery for multiple term queries                                              
-                        if (terms.Count() > 1)
+                        if (terms.Length > 1)
                         {
                             var phraseQuery = new PhraseQuery(fieldNameAnalyzed, query) { Boost = 10 };
                             var phrasePrefixQuery = new PhrasePrefixQuery(fieldNameLowercase, query.ToLower()) { Boost = 5 };
@@ -165,7 +165,7 @@ namespace Foundation.Features.Search.Extensions
 
                 // Only take terms > 2 chars and take max 3 of these
                 string[] candidateTerms = terms.Where(x => x.Length > 2).Take(3).Select(x => string.Format("{0}{1}", x, "~")).ToArray();
-                if (candidateTerms.Count() == 0)
+                if (candidateTerms.Length == 0)
                 {
                     return;
                 }
@@ -239,7 +239,7 @@ namespace Foundation.Features.Search.Extensions
 
                 // Only take terms > 2 chars and take max 3 of these
                 string[] candidateTerms = terms.Where(x => x.Length > 2).Take(3).Select(x => string.Format("{0}{1}", x, "*")).ToArray();
-                if (candidateTerms.Count() == 0)
+                if (candidateTerms.Length == 0)
                 {
                     return;
                 }

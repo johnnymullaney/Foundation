@@ -169,7 +169,7 @@ namespace Foundation.Features.Search.Extensions
 
         private static bool ContainsMultipleTerms(string text)
         {
-            return (text.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Count() > 1);
+            return (text.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Length > 1);
         }
     }
 }

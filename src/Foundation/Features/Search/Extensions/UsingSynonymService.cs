@@ -16,7 +16,7 @@ namespace Foundation.Features.Search.Extensions
     public class UsingSynonymService
     {
         private readonly SynonymLoader _synonymLoader;
-        private readonly int MAX_SYNONYM_LOOKUPS = 50;
+        private readonly int MAXSYNONYMLOOKUPS = 50;
         private static ILog log = LogManager.GetLogger(typeof(SearchRequestExtensions));
 
         public UsingSynonymService(SynonymLoader synonymLoader)
@@ -56,7 +56,7 @@ namespace Foundation.Features.Search.Extensions
                     var synonymDictionary = _synonymLoader.GetSynonyms(cacheDuration);
 
                     var queryPhrases = QueryHelpers.GetQueryPhrases(query).ToArray();
-                    if (queryPhrases.Count() == 0)
+                    if (!queryPhrases.Any())
                     {
                         return;
                     }
@@ -154,7 +154,7 @@ namespace Foundation.Features.Search.Extensions
         // Get query non-expanded and expanded into queries to be used for for querystringquery and queries for match
         // Queries for querystringquery are a query without terms matching synonyms AND a query with only expanded synonyms
         // Queries for match are all expansion variations with the original query
-        private bool GetQueryExpanded(string[] terms, Dictionary<String, HashSet<String>> synonymDictionary, out string queryNonExpanded, out string queryExpanded, out List<string> queriesForMatch)
+        private bool GetQueryExpanded(string[] terms, Dictionary<string, HashSet<string>> synonymDictionary, out string queryNonExpanded, out string queryExpanded, out List<string> queriesForMatch)
         {
             queriesForMatch = new List<string>();
             queryExpanded = "";
@@ -173,13 +173,13 @@ namespace Foundation.Features.Search.Extensions
             List<string> expandedTerms = new List<string>();
 
             // Iterate all terms and phrase variations, match synonym and expand them                    
-            for (var s = 0; s <= terms.Count(); s++)
+            for (var s = 0; s <= terms.Length; s++)
             {
-                for (var c = 1; c <= terms.Count() - s; c++)
+                for (var c = 1; c <= terms.Length - s; c++)
                 {
                     var phrase = string.Join(" ", terms.Skip(s).Take(c));
 
-                    if (MAX_SYNONYM_LOOKUPS >= s + c && synonymDictionary.TryGetValue(phrase.ToLowerInvariant(), out HashSet<string> matchingSynonyms))
+                    if (MAXSYNONYMLOOKUPS >= s + c && synonymDictionary.TryGetValue(phrase.ToLowerInvariant(), out HashSet<string> matchingSynonyms))
                     {
                         // Terms/Phrase with synonym expansions i.e. (7 OR Seven)
                         expandedTerms.Add(ExpandPhrase(phrase, matchingSynonyms));
@@ -192,7 +192,9 @@ namespace Foundation.Features.Search.Extensions
 
                         //Remove terms that were expanded
                         for (var x = s; s + c > x; x++)
+                        {
                             nonExpandedTerms[x] = string.Empty;
+                        }
                     }
 
                 }
@@ -236,7 +238,7 @@ namespace Foundation.Features.Search.Extensions
 
         private static bool ContainsMultipleTerms(string text)
         {
-            return (text.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Count() > 1);
+            return (text.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Length > 1);
         }
 
     }
