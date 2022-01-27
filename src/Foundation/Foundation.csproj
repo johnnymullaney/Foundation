@@ -1285,6 +1285,11 @@
     <Compile Include="Features\Search\CategoriesFilterViewModel.cs" />
     <Compile Include="Features\Search\Category\GenericNodeSelectionFactory.cs" />
     <Compile Include="Features\Search\ContentSearchViewModel.cs" />
+    <Compile Include="Features\Search\Extensions\MinShouldMatchQueryStringQuery.cs" />
+    <Compile Include="Features\Search\Extensions\MultiFieldQueryStringQueryExtensions.cs" />
+    <Compile Include="Features\Search\Extensions\QueryHelpers.cs" />
+    <Compile Include="Features\Search\Extensions\SynonymLoader.cs" />
+    <Compile Include="Features\Search\Extensions\UsingSynonymService.cs" />
     <Compile Include="Features\Search\FilterOptionViewModel.cs" />
     <Compile Include="Features\Search\FilterOptionViewModelBinder.cs" />
     <Compile Include="Features\Search\FoundationCatalogContentEventListener.cs" />
