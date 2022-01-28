@@ -56,6 +56,10 @@ namespace Foundation.Features.CatalogContent.Product
         [Display(Name = "Description", GroupName = SystemTabNames.Content, Order = 25)]
         public virtual XhtmlString Description { get; set; }
 
+
+        [Display(Name = "Popular Product", GroupName = SystemTabNames.Content, Order = 28)]
+        public virtual bool PopularProduct { get; set; }
+
         [CultureSpecific]
         [Display(Name = "Legal disclaimer", GroupName = SystemTabNames.Content, Order = 30)]
         public virtual string LegalDisclaimer { get; set; }

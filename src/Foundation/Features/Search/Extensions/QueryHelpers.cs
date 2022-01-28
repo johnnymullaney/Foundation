@@ -153,6 +153,9 @@ namespace Foundation.Features.Search.Extensions
 
         public static string GetRawQueryString(QueryStringQuery currentQueryStringQuery)
         {
+            if (string.IsNullOrEmpty(currentQueryStringQuery.RawQuery))
+                return string.Empty;
+         
             return (currentQueryStringQuery.RawQuery.Trim() ?? string.Empty).ToString();
         }
         public static bool IsStringQuoted(string text)

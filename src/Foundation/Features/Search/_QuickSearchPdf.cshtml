@@ -7,20 +7,20 @@
     Layout = null;
 }
 
-@if (Model != null && Model.PdfSearchResult != null && Model.PdfSearchResult.Hits != null && Model.PdfSearchResult.Hits.Any())
+@if (Model != null && Model.PdfSearchResult != null && Model.PdfSearchResult.ProductHits != null && Model.PdfSearchResult.ProductHits.Any())
 {
     <ul class="style-list-none">
         <li class="searchbox__heading">
             <b>Documents</b>
         </li>
-        @foreach (var content in Model.PdfSearchResult.Hits)
+        @foreach (var content in Model.PdfSearchResult.ProductHits)
         {
 
-            <li class="searchbox__row">
+            @*<li class="searchbox__row">
                 <a href="@content.Url" class="searchbox__product-name">
                     @Html.Raw(content.Title)
                 </a>
-            </li>
+            </li>*@
         }
     </ul>
 }

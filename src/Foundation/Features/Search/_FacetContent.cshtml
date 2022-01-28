@@ -1,4 +1,5 @@
 ﻿@using EPiServer.Find
+@using EPiServer.Find.Cms
 @using EPiServer.Shell.Web.Mvc.Html
 @using Foundation.Features.Search
 @using Foundation.Features.Search.Search
@@ -31,15 +32,15 @@
                 }
             }
         </li>
-        @if (Model.ContentSearchResult != null && Model.ContentSearchResult.Hits != null)
+        @if (Model.ContentSearchResult != null && Model.ContentSearchResult.ProductHits != null)
         {
             <li class="">
                 <span class="selection--cm__sub-label">
-                    <a href="@Model.ContentSearchResult.GetSectionGroupUrl("")"> All (@Model.ContentSearchResult.Hits.FilterFacet("AllSections").Count)</a>
+                    <a href="@Model.ContentSearchResult.GetSectionGroupUrl("")"> All (@Model.ContentSearchResult.ProductHits.FilterFacet("AllSections").Count)</a>
                 </span>
             </li>
 
-            foreach (var sectionGroup in Model.ContentSearchResult.Hits.TermsFacetFor(x => x.SearchSection))
+            foreach (var sectionGroup in Model.ContentSearchResult.ProductHits.TermsFacetFor(x => x.SearchSection()))
             {
                 <li class="">
                     <span class="selection--cm__sub-label">

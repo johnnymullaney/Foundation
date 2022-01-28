@@ -72,7 +72,7 @@ namespace Foundation.Features.Search
             var results = _searchService.Search(currentContent, filterOption, selectedFacets, catalogId);
 
             filterOption.TotalCount = results.TotalCount;
-            filterOption.FacetGroups = results.FacetGroups.ToList();
+            //filterOption.FacetGroups = results.FacetGroups.ToList();
 
             filterOption.Sorting = _searchService.GetSortOrder().Select(x => new SelectListItem
             {

@@ -4,6 +4,7 @@
 @model SearchViewModel<SearchResultPage>
 
 @using EPiServer.Find;
+@using EPiServer.Find.Commerce
 
 @{
     Layout = null;
@@ -17,28 +18,25 @@
                 <h2>@ViewData["SearchLabel"]</h2>
             </div>
         }
-        @if (Model != null && Model.ContentSearchResult.Hits != null && Model.ContentSearchResult.Hits.Any())
+        @if (Model != null && Model.ContentSearchResult.ProductHits != null && Model.ContentSearchResult.ProductHits.Any())
         {
+
             <div class="list-group--header content-search-results">
-                @foreach (var content in Model.ContentSearchResult.Hits)
+                @foreach (var content in Model.ContentSearchResult.ProductHits)
                 {
-                    <a href="@content.Url" class="list-group--header__item d-flex">
-                        @if (content.ImageUri != null)
+                    <a href="@Url.ContentUrl(content.ContentLink)" class="list-group--header__item d-flex">
+                        @if (!String.IsNullOrEmpty(content.DefaultImageUrl()))
                         {
                             <div class="col-2 content__item">
-                                <img class="img-fluid lazyload" data-src="@content.ImageUri?width=1440&format=webp0" loading="lazy" alt="@content.Title" />
+                                <img class="img-fluid lazyload" data-src="@content.DefaultImageUrl()?width=1440&format=webp0" loading="lazy" alt="@content.DisplayName" />
                             </div>
                         }
-                        <div class="@(content.ImageUri != null ? "col-10" : "col-12") content__item">
+                        <div class="@(content.DefaultImageUrl() != null ? "col-10" : "col-12") content__item">
                             <b class="title">
-                                @if (content.IsBestBet() && content.HasBestBetStyle())
-                                {
-                                    <i data-feather="star" class="content__betbest"></i>
-                                }
-                                @Html.Raw(content.Title)
+                                @Html.Raw(content.DisplayName)
                             </b>
                             <div class="sub-title">
-                                <p>@Html.Raw(content.Excerpt)</p>
+                                <p>@Html.Raw(content.Description)</p>
                             </div>
                         </div>
                     </a>

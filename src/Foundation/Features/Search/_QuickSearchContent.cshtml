@@ -7,18 +7,18 @@
     Layout = null;
 }
 
-@if (Model != null && Model.ContentSearchResult != null && Model.ContentSearchResult.Hits != null && Model.ContentSearchResult.Hits.Any())
+@if (Model != null && Model.ContentSearchResult != null && Model.ContentSearchResult.ProductHits != null && Model.ContentSearchResult.ProductHits.Any())
 {
     <ul class="style-list-none">
         <li class="searchbox__heading">
             <b>Contents</b>
         </li>
-        @foreach (var content in Model.ContentSearchResult.Hits)
+        @foreach (var content in Model.ContentSearchResult.ProductHits)
         {
 
             <li class="searchbox__row">
-                <a href="@content.Url" class="searchbox__product-name">
-                    @Html.Raw(content.Title)
+                <a href="@Url.ContentUrl(content.ContentLink)" class="searchbox__product-name">
+                    @Html.Raw(content.Description)
                 </a>
             </li>
         }

@@ -1,4 +1,5 @@
 ﻿@using EPiServer.Find;
+@using EPiServer.Find.Commerce
 @using Foundation.Features.Search
 @using Foundation.Features.Search.Search
 
@@ -16,28 +17,24 @@
                 <h2>@ViewData["SearchLabel"]</h2>
             </div>
         }
-        @if (Model != null && Model.PdfSearchResult.Hits != null && Model.PdfSearchResult.Hits.Any())
+        @if (Model != null && Model.PdfSearchResult.ProductHits != null && Model.PdfSearchResult.ProductHits.Any())
         {
             <div class="list-group--header content-search-results">
-                @foreach (var content in Model.PdfSearchResult.Hits)
+                @foreach (var content in Model.PdfSearchResult.ProductHits)
                 {
-                    <a href="@content.Url" class="list-group--header__item d-flex">
-                        @if (content.ImageUri != null)
+                    <a href="@Url.ContentUrl(content.ContentLink)" class="list-group--header__item d-flex">
+                        @if (content.DefaultImageUrl() != null)
                         {
                             <div class="col-2 content__item">
-                                <img src="@content.ImageUri" alt="@content.Title" class="img-fluid" />
+                                <img src="@content.DefaultImageUrl()" alt="@content.DisplayName" class="img-fluid" />
                             </div>
                         }
-                        <div class="@(content.ImageUri != null ? "col-10" : "col-12") content__item">
+                        <div class="@(content.DefaultImageUrl() != null ? "col-10" : "col-12") content__item">
                             <b class="title">
-                                @if (content.IsBestBet() && content.HasBestBetStyle())
-                                {
-                                    <i data-feather="star" class="content__betbest"></i>
-                                }
-                                @Html.Raw(content.Title)
+                                @content.DisplayName
                             </b>
                             <div class="sub-title">
-                                <p>@Html.Raw(content.Excerpt)</p>
+                                <p>@Html.Raw(content.Description)</p>
                             </div>
                         </div>
                     </a>
