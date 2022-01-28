@@ -100,7 +100,19 @@ namespace Foundation.Infrastructure
         [Display(Name = "Button", Order = 288)]
         public const string Button = "Button";
 
-        [Display(Name = "Settings", Order = 290)]
+        [Display(Name = "Property Weightings", Order = 300)]
+        public const string PropertyWeightings = "PropertyWeightings";
+
+        [Display(Name = "Boosting", Order = 310)]
+        public const string Boosting = "Boosting";
+
+        [Display(Name = "Query Optimisation", Order = 320)]
+        public const string QueryOptimisation = "QueryOptimisation";
+
+        [Display(Name = "Experimentation", Order = 330)]
+        public const string Experimentation = "Experimentation";
+
+        [Display(Name = "Settings", Order = 400)]
         public const string Settings = SystemTabNames.Settings;
     }
 }

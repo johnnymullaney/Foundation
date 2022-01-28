@@ -1304,6 +1304,7 @@
     <Compile Include="Features\Search\ProductSearchBlock\ProductSearchResultViewModel.cs" />
     <Compile Include="Features\Search\ProductSearchResults.cs" />
     <Compile Include="Features\Search\ProductSortOrder.cs" />
+    <Compile Include="Features\Search\Search\SearchAlgorithmSettingsPage.cs" />
     <Compile Include="Features\Search\Search\SearchPageUIDescriptor.cs" />
     <Compile Include="Features\Search\SortOrder.cs" />
     <Compile Include="Features\Search\VariationModel.cs" />
@@ -1737,8 +1738,6 @@
     <Analyzer Include="..\..\packages\Microsoft.NetCore.Analyzers.3.3.0\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
     <Analyzer Include="..\..\packages\Microsoft.NetFramework.Analyzers.3.3.0\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
     <Analyzer Include="..\..\packages\Microsoft.NetFramework.Analyzers.3.3.0\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
-    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\customers.xml" />
